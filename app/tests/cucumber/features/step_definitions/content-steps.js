@@ -8,6 +8,16 @@ module.exports = function () {
     return this.server.call('fixtures/seedData');
   });
 
+  this.Given(/^I have created a chapter called "([^"]*)" at "([^"]*)" with the description$/, function (title, path, text) {
+    return this.server.call(
+      'fixtures/page/create', {
+        template: 'chapter',
+        title: title,
+        path: path,
+        description: text
+      });
+  });
+
   this.When(/^a visitor navigates to the page$/, function () {
     return this.client.
       url(url.resolve(process.env.ROOT_URL, this.thePage)).
@@ -27,4 +37,15 @@ module.exports = function () {
       getText('p em').should.become(tagline);
   });
 
+  this.Then(/^they can navigate to "([^"]*)" at "([^"]*)"$/, function (location, source) {
+    return this.client.
+      waitForExist('a[title="' + location + '"]').
+      getAttribute('a[title="' + location + '"]', 'href').should.eventually.contain(source);
+  });
+
+  this.Then(/^they see the chapter "([^"]*)" in the table of contents with the description$/, function (title, text) {
+    return this.client.
+      waitForExist('//*[@class="chapter"]//a[contains(text(), "' + title + '")]').
+      waitForExist('//*[@class="chapter"]//p[contains(text(), "' + text + '")]');
+  });
 };
