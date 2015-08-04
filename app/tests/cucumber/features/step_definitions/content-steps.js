@@ -8,13 +8,13 @@ module.exports = function () {
     return this.server.call('fixtures/seedData');
   });
 
-  this.Given(/^I have created a chapter called "([^"]*)" at "([^"]*)" with the description$/, function (title, path, text) {
+  this.Given(/^I created a chapter called "([^"]*)" at "([^"]*)" with the following markdown$/, function (title, path, markdown) {
     return this.server.call(
       'fixtures/page/create', {
         template: 'chapter',
         title: title,
         path: path,
-        description: text
+        description: markdown
       });
   });
 
