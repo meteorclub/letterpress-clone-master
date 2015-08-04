@@ -59,7 +59,7 @@ test:
   override:
 
     # Package testing using velocity-cli
-    - velocity test-package login --ci --settings settings.development.json
+    # - velocity test-package <package name> --ci
 
     # Test the app with Chrome and ensure all artifacts can be traced back to the chrome run
     - node ../environments/build/velocity.js:
@@ -83,22 +83,22 @@ test:
     - mkdir -p $CIRCLE_ARTIFACTS/firefox
     - cp app/.meteor/local/log/*.log $CIRCLE_ARTIFACTS/firefox
 
-deployment:
-
-  production:
-    branch: 'master'
-    commands:
-
-      # Put our secret environment variables into the mup.json env vars section
-      - sed -i.bak s^%MAIL_URL%^$LIVE_MAIL_URL^g environments/production/mup.json
-      - sed -i.bak s^%SIMIAN_ACCESS_TOKEN%^$SIMIAN_ACCESS_TOKEN^g environments/production/mup.json
-      - sed -i.bak s^%MONGO_URL%^$LIVE_MONGO_URL^g environments/production/mup.json
-      - sed -i.bak s^%MONGO_OPLOG_URL%^$LIVE_MONGO_OPLOG_URL^g environments/production/mup.json
-      - sed -i.bak s^%STRIPE_SECRET_KEY%^$TEST_STRIPE_SECRET_KEY^g environments/production/mup.json
-
-      # Copy the CloudFront pem file into the private dir of the app
-      - cp /home/ubuntu/.ssh/id_e63a7fbbf2c423eb3271dcfe03a6fec2 app/private/pk-APKAI6S56DROMMGID6BA.pem
-
-      # Run Meteor-up deployment using file with secure vars
-      - mupx deploy:
-          pwd: environments/production
+#deployment:
+#
+#  production:
+#    branch: 'master'
+#    commands:
+#
+#      # Put our secret environment variables into the mup.json env vars section
+#      - sed -i.bak s^%MAIL_URL%^$LIVE_MAIL_URL^g environments/production/mup.json
+#      - sed -i.bak s^%SIMIAN_ACCESS_TOKEN%^$SIMIAN_ACCESS_TOKEN^g environments/production/mup.json
+#      - sed -i.bak s^%MONGO_URL%^$LIVE_MONGO_URL^g environments/production/mup.json
+#      - sed -i.bak s^%MONGO_OPLOG_URL%^$LIVE_MONGO_OPLOG_URL^g environments/production/mup.json
+#      - sed -i.bak s^%STRIPE_SECRET_KEY%^$TEST_STRIPE_SECRET_KEY^g environments/production/mup.json
+#
+#      # Copy the CloudFront pem file into the private dir of the app
+#      - cp /home/ubuntu/.ssh/id_e63a7fbbf2c423eb3271dcfe03a6fec2 app/private/pk-APKAI6S56DROMMGID6BA.pem
+#
+#      # Run Meteor-up deployment using file with secure vars
+#      - mupx deploy:
+#          pwd: environments/production
