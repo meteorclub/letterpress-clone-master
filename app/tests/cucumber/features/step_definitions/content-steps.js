@@ -8,10 +8,14 @@ module.exports = function () {
     return this.server.call('fixtures/seedData');
   });
 
-  this.Given(/^I created a chapter called "([^"]*)" at "([^"]*)" with the following markdown$/, function (title, path, markdown) {
+  this.Given(/^I created a "([^"]*)" called "([^"]*)" at "([^"]*)" with the following markdown$/, function (template, title, path, markdown) {
+
+    // store the path so humans can use "the page" natural language in future steps
+    this.thePage = path;
+
     return this.server.call(
       'fixtures/page/create', {
-        template: 'chapter',
+        template: template,
         title: title,
         path: path,
         description: markdown
@@ -29,6 +33,12 @@ module.exports = function () {
     return this.client.
       waitForExist('img').
       getAttribute('img', 'src').should.eventually.contain(source);
+  });
+
+  this.Then(/^they see the sub-heading "([^"]*)"$/, function (subHeading) {
+    return this.client.
+      waitForExist('h2=' + subHeading).
+      isVisible('h2=' + subHeading);
   });
 
   this.Then(/^they see the tag-line "([^"]*)"$/, function (tagline) {
