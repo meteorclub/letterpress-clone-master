@@ -22,6 +22,13 @@ module.exports = function () {
       });
   });
 
+  this.When(/^a visitor navigates to "([^"]*)"$/, function (page) {
+    return this.client.
+      url(url.resolve(process.env.ROOT_URL, page)).
+      waitForExist('body').
+      waitForVisible('body');
+  });
+
   this.When(/^a visitor navigates to the page$/, function () {
     return this.client.
       url(url.resolve(process.env.ROOT_URL, this.thePage)).
@@ -33,6 +40,18 @@ module.exports = function () {
     return this.client.
       waitForExist('img').
       getAttribute('img', 'src').should.eventually.contain(source);
+  });
+
+  this.Then(/^they see the heading "([^"]*)"$/, function (heading) {
+    return this.client.
+      waitForExist('h1=' + heading).
+      isVisible('h1=' + heading);
+  });
+
+  this.Then(/^they see the content "([^"]*)"$/, function (heading) {
+    return this.client.
+      waitForExist('p=' + heading).
+      isVisible('p=' + heading);
   });
 
   this.Then(/^they see the sub-heading "([^"]*)"$/, function (subHeading) {

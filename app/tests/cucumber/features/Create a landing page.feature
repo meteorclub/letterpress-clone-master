@@ -14,7 +14,7 @@ Feature: Create a Landing Page
           """
           The answer to life, universe and everything.
           """
-    When  a visitor navigates to the page
+    When  a visitor navigates to "/"
     Then  they see the chapter "Holistic Agencies" in the table of contents with the description
           """
           How to get a sofa into a room it won't fit in.

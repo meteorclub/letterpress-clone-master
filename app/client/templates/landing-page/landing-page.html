@@ -1,0 +1,22 @@
+<head>
+    <title>letterpress</title>
+</head>
+
+<body>
+
+</body>
+
+<template name="landingPage">
+
+    {{#markdown}}{{description}}{{/markdown}}
+
+    <section class="toc">
+        {{#each chapters}}
+        <div class="chapter">
+            <h3><a href="{{path}}" title="{{title}}">{{title}}</a></h3>
+            {{#markdown}}{{description}}{{/markdown}}
+        </div>
+        {{/each}}
+    </section>
+
+</template>

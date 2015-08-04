@@ -7,9 +7,12 @@
 meteor-platform
 autopublish
 insecure
+
 xolvio:cucumber
+velocity:helpers
+sanjo:jasmine
 
 letterpress:core
 letterpress:fixtures
-#iron:router
+iron:router
 chuangbo:marked
