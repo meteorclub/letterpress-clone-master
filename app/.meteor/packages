@@ -7,12 +7,17 @@
 meteor-platform
 autopublish
 insecure
+accounts-password
 
 xolvio:cucumber
 velocity:helpers
 sanjo:jasmine
+xolvio:stripe-stub
+xolvio:email-stub
 
 letterpress:core
 letterpress:fixtures
 iron:router
 chuangbo:marked
+mrgalaxy:stripe
+accounts-ui

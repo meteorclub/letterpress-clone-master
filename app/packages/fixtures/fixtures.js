@@ -6,6 +6,7 @@
 
     'fixtures/reset': function () {
       Letterpress.Collections.Pages.remove({});
+      Meteor.users.remove({});
     },
 
     'fixtures/seedData': Letterpress.Utils.seedData,
@@ -20,6 +21,10 @@
         Letterpress.Collections.Pages.insert(pages[i]);
       }
     },
+
+    'fixtures/setPaymentPlan': function (plan) {
+      Meteor.settings.private.paymentPlan = plan;
+    }
 
   });
 

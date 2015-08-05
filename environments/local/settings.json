@@ -1,6 +1,13 @@
 {
   "public": {
+    "price": 2900,
+    "stripe": {
+      "publicKey": "pk_test_PjoVXPNKEGmKuqUSjwP5TAnp"
+    }
   },
   "private": {
+    "stripe": {
+      "secretKey": "1234"
+    }
   }
 }

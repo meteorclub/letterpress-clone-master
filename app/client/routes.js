@@ -1,3 +1,7 @@
+Router.configure({
+  layoutTemplate: 'layout'
+});
+
 RouterHelper = {
   currentUrl: function () {
     var currentUrl = Router.current().url;
