@@ -18,6 +18,5 @@ Letterpress.Services.Buy = {
     }
 
     Letterpress.Services.Account.createAccount(token.email);
-
   }
 };

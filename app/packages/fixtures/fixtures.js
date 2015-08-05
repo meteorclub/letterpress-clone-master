@@ -22,6 +22,10 @@
       }
     },
 
+    'fixtures/getSettings': function () {
+      return Meteor.settings;
+    },
+
     'fixtures/setPaymentPlan': function (plan) {
       Meteor.settings.private.paymentPlan = plan;
     }

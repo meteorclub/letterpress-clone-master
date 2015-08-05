@@ -6,6 +6,13 @@
     }
   },
   "private": {
+    "emails": {
+      "welcome": {
+        "from": "josh@meteorjs.club",
+        "subject": "Welcome to Mastering Meteor",
+        "text": "There is the body of the email"
+      }
+    },
     "stripe": {
       "secretKey": "1234"
     }
